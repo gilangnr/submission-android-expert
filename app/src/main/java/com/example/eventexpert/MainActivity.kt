@@ -7,7 +7,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.eventexpert.databinding.ActivityMainBinding
-import com.example.eventexpert.favorite.FavoriteFragment
+import com.example.favorite.FavoriteFragment
 import com.example.eventexpert.home.HomeFragment
 
 class MainActivity : AppCompatActivity() {

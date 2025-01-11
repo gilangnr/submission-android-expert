@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "Event Expert"
 include(":app")
 include(":core")
+include(":favorite")

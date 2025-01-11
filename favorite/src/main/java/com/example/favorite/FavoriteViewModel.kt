@@ -1,4 +1,4 @@
-package com.example.eventexpert.favorite
+package com.example.favorite
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
