@@ -2,21 +2,19 @@ package com.example.eventexpert.favorite
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.eventexpert.R
 import com.example.eventexpert.core.ui.EventAdapter
-import com.example.eventexpert.core.ui.ViewModelFactory
 import com.example.eventexpert.databinding.FragmentFavoriteBinding
 import com.example.eventexpert.detail.DetailActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FavoriteFragment : Fragment() {
 
-    private lateinit var favoriteViewModel: FavoriteViewModel
+    private val favoriteViewModel: FavoriteViewModel by viewModel()
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -37,9 +35,6 @@ class FavoriteFragment : Fragment() {
                 intent.putExtra("DATA", event)
                 startActivity(intent)
             }
-
-            val factory = ViewModelFactory.getInstance(requireActivity())
-            favoriteViewModel = ViewModelProvider(this, factory)[FavoriteViewModel::class.java]
 
             favoriteViewModel.favoriteEvent.observe(viewLifecycleOwner) { dataEvent ->
                 eventAdapter.submitList(dataEvent)

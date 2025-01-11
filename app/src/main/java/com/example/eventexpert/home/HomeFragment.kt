@@ -2,26 +2,25 @@ package com.example.eventexpert.home
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.eventexpert.R
 import com.example.eventexpert.core.data.Resource
 import com.example.eventexpert.core.ui.EventAdapter
-import com.example.eventexpert.core.ui.ViewModelFactory
 import com.example.eventexpert.databinding.FragmentHomeBinding
 import com.example.eventexpert.detail.DetailActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private lateinit var homeViewModel: HomeViewModel
+    private val homeViewModel: HomeViewModel by viewModel()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,9 +40,6 @@ class HomeFragment : Fragment() {
                 intent.putExtra("DATA", event)
                 startActivity(intent)
             }
-
-            val factory = ViewModelFactory.getInstance(requireActivity())
-            homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
 
             homeViewModel.event.observe(viewLifecycleOwner) { event ->
                 if (event != null) {

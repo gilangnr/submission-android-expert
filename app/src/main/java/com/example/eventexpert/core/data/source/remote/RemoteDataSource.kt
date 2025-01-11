@@ -1,31 +1,15 @@
 package com.example.eventexpert.core.data.source.remote
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.eventexpert.core.data.source.remote.network.ApiResponse
 import com.example.eventexpert.core.data.source.remote.network.ApiService
-import com.example.eventexpert.core.data.source.remote.response.EventResponse
 import com.example.eventexpert.core.data.source.remote.response.ListEventsItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-class RemoteDataSource private constructor(private val apiService: ApiService) {
-
-    companion object {
-        @Volatile
-        private var instance: RemoteDataSource? = null
-
-        fun getInstance(service: ApiService): RemoteDataSource =
-            instance ?: synchronized(this) {
-                instance ?: RemoteDataSource(service).also { instance = it }
-            }
-    }
+class RemoteDataSource(private val apiService: ApiService) {
 
     suspend fun getAllEvents(): Flow<ApiResponse<List<ListEventsItem>>> {
         return flow {

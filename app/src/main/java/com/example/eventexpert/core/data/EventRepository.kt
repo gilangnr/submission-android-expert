@@ -11,25 +11,12 @@ import com.example.eventexpert.core.utils.DataMapper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class EventRepository private constructor(
+class EventRepository(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
 ): IEventRepository{
 
-    companion object {
-        @Volatile
-        private var instance: EventRepository? = null
-
-        fun getInstance(
-            remoteData: RemoteDataSource,
-            localData: LocalDataSource,
-            appExecutors: AppExecutors
-        ): EventRepository =
-            instance ?: synchronized(this) {
-                instance ?: EventRepository(remoteData, localData, appExecutors)
-            }
-    }
     override fun getAllEvent(): Flow<Resource<List<Event>>> =
         object : NetworkBoundResource<List<Event>, List<ListEventsItem>>() {
             override fun loadFromDB(): Flow<List<Event>> {

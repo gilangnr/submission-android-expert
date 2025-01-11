@@ -10,17 +10,16 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.IntentCompat.getParcelableExtra
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.eventexpert.R
 import com.example.eventexpert.core.domain.model.Event
-import com.example.eventexpert.core.ui.ViewModelFactory
 import com.example.eventexpert.databinding.ActivityDetailBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
-    private lateinit var detailEventViewModel: DetailEventViewModel
+    private val detailEventViewModel: DetailEventViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -31,9 +30,6 @@ class DetailActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        val factory = ViewModelFactory.getInstance(this)
-        detailEventViewModel = ViewModelProvider(this, factory)[DetailEventViewModel::class.java]
 
         val detailEvent = getParcelableExtra(intent, "DATA", Event::class.java)
         showDetailEvent(detailEvent)
