@@ -7,6 +7,10 @@ import com.example.eventexpert.core.data.source.remote.network.ApiResponse
 import com.example.eventexpert.core.data.source.remote.network.ApiService
 import com.example.eventexpert.core.data.source.remote.response.EventResponse
 import com.example.eventexpert.core.data.source.remote.response.ListEventsItem
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,31 +27,21 @@ class RemoteDataSource private constructor(private val apiService: ApiService) {
             }
     }
 
-    fun getAllEvents(): LiveData<ApiResponse<List<ListEventsItem>>> {
-        val resultData = MutableLiveData<ApiResponse<List<ListEventsItem>>>()
+    suspend fun getAllEvents(): Flow<ApiResponse<List<ListEventsItem>>> {
+        return flow {
+            try {
+                val response = apiService.getList()
+                val dataArray = response.listEvents
 
-        // Get data from remote API
-        val client = apiService.getList()
-
-        client.enqueue(object : Callback<EventResponse> {
-            override fun onResponse(
-                call: Call<EventResponse>,
-                response: Response<EventResponse>
-            ) {
-                val dataArray = response.body()?.listEvents
-                resultData.value = if (dataArray != null && dataArray.isNotEmpty()) {
-                    ApiResponse.Success(dataArray)
+                if (dataArray.isNotEmpty()) {
+                    emit(ApiResponse.Success(response.listEvents))
                 } else {
-                    ApiResponse.Empty
+                    emit(ApiResponse.Empty)
                 }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+                Log.e("RemoteDataSource", e.toString())
             }
-
-            override fun onFailure(call: Call<EventResponse>, t: Throwable) {
-                resultData.value = ApiResponse.Error(t.message.toString())
-                Log.e("RemoteDataSource", "Error: ${t.message}")
-            }
-        })
-
-        return resultData
+        }.flowOn(Dispatchers.IO)
     }
 }

@@ -7,19 +7,20 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.eventexpert.core.data.source.local.entity.EventEntity
+import kotlinx.coroutines.flow.Flow
 
 
 @Dao
 interface EventDao {
 
     @Query("SELECT * FROM event")
-    fun getAllEvents(): LiveData<List<EventEntity>>
+    fun getAllEvents(): Flow<List<EventEntity>>
 
     @Query("SELECT * FROM event WHERE isFavorite = 1")
-    fun getFavoriteEvents(): LiveData<List<EventEntity>>
+    fun getFavoriteEvents(): Flow<List<EventEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertEvents(events: List<EventEntity>)
+    suspend fun insertEvents(events: List<EventEntity>)
 
     @Update
     fun updateFavoriteEvent(event: EventEntity)

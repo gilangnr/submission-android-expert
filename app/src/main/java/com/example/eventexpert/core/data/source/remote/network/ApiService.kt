@@ -6,5 +6,5 @@ import retrofit2.http.GET
 
 interface ApiService {
     @GET("events")
-    fun getList(): Call<EventResponse>
+    suspend fun getList(): EventResponse
 }

@@ -3,6 +3,7 @@ package com.example.eventexpert.core.data.source.local
 import androidx.lifecycle.LiveData
 import com.example.eventexpert.core.data.source.local.entity.EventEntity
 import com.example.eventexpert.core.data.source.local.room.EventDao
+import kotlinx.coroutines.flow.Flow
 
 class LocalDataSource private constructor(private val eventDao: EventDao){
     companion object {
@@ -14,11 +15,11 @@ class LocalDataSource private constructor(private val eventDao: EventDao){
             }
     }
 
-    fun getAllEvents(): LiveData<List<EventEntity>> = eventDao.getAllEvents()
+    fun getAllEvents(): Flow<List<EventEntity>> = eventDao.getAllEvents()
 
-    fun getFavoriteEvents(): LiveData<List<EventEntity>> = eventDao.getFavoriteEvents()
+    fun getFavoriteEvents(): Flow<List<EventEntity>> = eventDao.getFavoriteEvents()
 
-    fun insertEvents(eventList: List<EventEntity>) = eventDao.insertEvents(eventList)
+    suspend fun insertEvents(eventList: List<EventEntity>) = eventDao.insertEvents(eventList)
 
     fun setFavoriteEvent(event: EventEntity, newState: Boolean) {
         event.isFavorite = newState
