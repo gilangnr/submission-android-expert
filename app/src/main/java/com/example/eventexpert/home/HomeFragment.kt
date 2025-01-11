@@ -9,8 +9,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.eventexpert.core.data.Resource
-import com.example.eventexpert.core.ui.EventAdapter
+import com.example.core.data.Resource
+import com.example.core.ui.EventAdapter
 import com.example.eventexpert.databinding.FragmentHomeBinding
 import com.example.eventexpert.detail.DetailActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel

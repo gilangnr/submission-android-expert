@@ -12,7 +12,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.example.eventexpert.R
-import com.example.eventexpert.core.domain.model.Event
+import com.example.core.domain.model.Event
 import com.example.eventexpert.databinding.ActivityDetailBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

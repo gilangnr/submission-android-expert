@@ -1,7 +1,7 @@
 package com.example.eventexpert.di
 
-import com.example.eventexpert.core.domain.usecase.EventInteractor
-import com.example.eventexpert.core.domain.usecase.EventUseCase
+import com.example.core.domain.usecase.EventInteractor
+import com.example.core.domain.usecase.EventUseCase
 import com.example.eventexpert.detail.DetailEventViewModel
 import com.example.eventexpert.favorite.FavoriteViewModel
 import com.example.eventexpert.home.HomeViewModel

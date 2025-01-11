@@ -1,9 +1,9 @@
 package com.example.eventexpert
 
 import android.app.Application
-import com.example.eventexpert.core.di.databaseModule
-import com.example.eventexpert.core.di.networkModule
-import com.example.eventexpert.core.di.repositoryModule
+import com.example.core.di.databaseModule
+import com.example.core.di.networkModule
+import com.example.core.di.repositoryModule
 import com.example.eventexpert.di.useCaseModule
 import com.example.eventexpert.di.viewModelModule
 import org.koin.android.ext.koin.androidContext

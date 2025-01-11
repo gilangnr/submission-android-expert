@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.eventexpert.core.ui.EventAdapter
+import com.example.core.ui.EventAdapter
 import com.example.eventexpert.databinding.FragmentFavoriteBinding
 import com.example.eventexpert.detail.DetailActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
