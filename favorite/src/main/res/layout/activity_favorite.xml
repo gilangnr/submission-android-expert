@@ -31,7 +31,7 @@
         android:id="@+id/txt_no_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tidak ada event favorit"
+        android:text="@string/tidak_ada_event_favorit"
         android:textSize="24sp"
         android:textStyle="bold"
         android:visibility="gone"

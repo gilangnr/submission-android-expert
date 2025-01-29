@@ -1,7 +1,5 @@
 package com.example.core.domain.usecase
 
-import androidx.lifecycle.LiveData
-import com.example.core.data.Resource
 import com.example.core.domain.model.Event
 import com.example.core.domain.repository.IEventRepository
 

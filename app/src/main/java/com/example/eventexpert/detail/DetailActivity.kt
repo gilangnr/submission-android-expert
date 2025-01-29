@@ -39,10 +39,10 @@ class DetailActivity : AppCompatActivity() {
         detailEvent?.let {
             binding.apply {
                 tvEventName.text = it.name
-                tvEventCategoryCity.text = "${it.category} • ${it.cityName}"
-                tvEventTime.text = "Start: ${it.beginTime} • End: ${it.endTime}"
+                tvEventCategoryCity.text = getString(R.string.city, it.category, it.cityName)
+                tvEventTime.text = getString(R.string.start_end, it.beginTime, it.endTime)
                 tvEventDescription.text = Html.fromHtml(it.description, Html.FROM_HTML_MODE_LEGACY)
-                tvEventQuota.text = "Quota: ${it.quota} • Registrants: ${it.registrants}"
+                tvEventQuota.text = getString(R.string.quota_registrants, it.quota.toString(), it.registrants.toString())
 
                 Glide.with(this@DetailActivity)
                     .load(it.mediaCover)
