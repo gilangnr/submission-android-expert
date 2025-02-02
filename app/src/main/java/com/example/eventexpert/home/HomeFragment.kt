@@ -2,6 +2,7 @@ package com.example.eventexpert.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,6 +53,8 @@ class HomeFragment : Fragment() {
                             binding.progressBar.visibility = View.GONE
                             binding.txtError.visibility = View.VISIBLE
                             binding.txtError.text = event.message
+                            Log.d("HomeFragment", "onViewCreated: ${event.message}")
+
                         }
                     }
                 }
