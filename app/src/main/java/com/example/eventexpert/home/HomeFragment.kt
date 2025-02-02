@@ -50,7 +50,8 @@ class HomeFragment : Fragment() {
                         }
                         is Resource.Error -> {
                             binding.progressBar.visibility = View.GONE
-                            Toast.makeText(requireContext(), "Ups ada kesalahan", Toast.LENGTH_SHORT).show()
+                            binding.txtError.visibility = View.VISIBLE
+                            binding.txtError.text = event.message
                         }
                     }
                 }
